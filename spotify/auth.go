@@ -3,7 +3,6 @@ package spotify
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
@@ -45,22 +44,24 @@ func (s *Spotify) listenerFunc(w http.ResponseWriter, r *http.Request) {
 		data.Set("redirect_uri", "http://localhost:8080/")
 		data.Set("client_id", s.clientID)
 		data.Set("client_secret", s.clientSecret)
-		fmt.Printf("\n%s\n", data.Encode())
+
 		req, _ := http.NewRequest("POST", "https://accounts.spotify.com/api/token", strings.NewReader(data.Encode()))
 		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 		resp, err := http.DefaultClient.Do(req)
-		if err == nil && resp.StatusCode == 200 {
+		if err == nil && resp.StatusCode == http.StatusOK {
 			defer resp.Body.Close()
 			tokenResponse := new(TokenResponse)
 			json.NewDecoder(resp.Body).Decode(tokenResponse) //TODO check error
-			b, _ := ioutil.ReadAll(resp.Body)
 			s.Credentials = *tokenResponse
-			fmt.Printf("Status %s:\n resposne %s\n", resp.Status, b)
+			fmt.Printf("token: %s\n", tokenResponse.AccessToken)
 			fmt.Fprint(w, "you can close this tab")
 			s.CredentialsChan <- true
 		} else {
 			fmt.Println("error exchanging code: ", err)
+			fmt.Fprintf(w, "<div>status: %s</div>", resp.Status)
+			fmt.Fprint(w, "<div>")
 			fmt.Fprint(w, err)
+			fmt.Fprint(w, "</div>")
 		}
 	} else {
 		//TODO exit terminal

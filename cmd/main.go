@@ -15,26 +15,34 @@ import (
 
 var clientIDFlag = flag.String("clientID", "", "spotify application client id")
 var clientSecretFlag = flag.String("clientSecret", "", "spotify application client secret")
+var tokenFlag = flag.String("token", "", "spotify token printed from prior run")
 
 func main() {
 	fmt.Println("spotify load")
 	flag.Parse()
 
-	if *clientIDFlag == "" || *clientSecretFlag == "" {
+	if (*clientIDFlag == "" || *clientSecretFlag == "") && *tokenFlag == "" {
 		flag.Usage()
 		os.Exit(1)
 	}
 
-	s := spotify.New(*clientIDFlag, *clientSecretFlag)
-	s.HandleAuthCallback()
-	err := s.Authorize()
+	s := spotify.New(*clientIDFlag, *clientSecretFlag, *tokenFlag)
+	if *tokenFlag == "" {
+		s.HandleAuthCallback()
+		if err := s.Authorize(); err != nil {
+			fmt.Println("failed to get authorization: ", err)
+			os.Exit(1)
+		}
 
-	select {
-	case <-s.CredentialsChan:
-		// go for it!
+		select {
+		case <-s.CredentialsChan:
+			// go for it!
+		}
 	}
 
-	err = s.Search()
+	err := s.Search()
 
-	fmt.Printf("search response:%s\n", err)
+	if err != nil {
+		fmt.Printf("search response:%v\n", err)
+	}
 }
