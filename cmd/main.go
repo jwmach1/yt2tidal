@@ -9,8 +9,10 @@ start with setting up spotify developer account: https://developer.spotify.com/d
 import (
 	"flag"
 	"fmt"
+	"math/rand"
 	"os"
 	"spotify_load/tidal"
+	"strconv"
 )
 
 var usernameFlag = flag.String("username", "", "tidal username")
@@ -43,4 +45,13 @@ func main() {
 		os.Exit(-1)
 	}
 
+	result, err := t.SearchArtist("Seven Mary Three")
+	fmt.Println("search error? ", err)
+	fmt.Printf("%+v\n", result)
+
+	pl, err := t.CreatePlaylist("7Mary3_" + strconv.Itoa(rand.Int()))
+	fmt.Println("create playlist error? ", err)
+
+	err = t.AddSongToPlaylist(pl.UUID, "3029318", "3029322")
+	fmt.Println("add song error? ", err)
 }
