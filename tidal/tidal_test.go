@@ -125,7 +125,8 @@ func Test_CreatePlaylist(t *testing.T) {
 		assert.Equal(t, "created from loader", actual.Description)
 	})
 }
-func Test_AddSongToPlaylist(t *testing.T) {
+
+func Test_SearchArtist(t *testing.T) {
 	t.Run("success", func(t *testing.T) {
 		tripper := new(mocks.RoundTripFunc)
 		transport := &RecordingTransport{
@@ -134,6 +135,50 @@ func Test_AddSongToPlaylist(t *testing.T) {
 		loginResponse := &http.Response{
 			Body:       ioutil.NopCloser(strings.NewReader(`{"userId":123,"sessionId":"thesessionid","countryCode":"FR"}`)),
 			StatusCode: http.StatusOK,
+		}
+		b, err := ioutil.ReadFile("./test_data/search_artist_sample.json")
+		require.NoError(t, err)
+		searchResponse := &http.Response{
+			Body:       ioutil.NopCloser(bytes.NewReader(b)),
+			StatusCode: http.StatusOK,
+		}
+
+		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
+			return r.URL.String() == "https://api.tidal.com/v1/login/username"
+		})).Return(loginResponse, nil).Once()
+		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
+			matches := r.URL.String() == "https://api.tidal.com/v1/search/artists?countryCode=FR&limit=25&query=u2"
+			if !matches {
+				t.Logf("matching %+v\n", r.URL.String())
+			}
+			return matches
+		})).Return(searchResponse, nil).Once()
+
+		testObject := tidal.NewClient(http.Client{
+			Transport: transport,
+		})
+
+		require.NoError(t, testObject.Login("fred", "yabba-dabba-do"))
+		actual, err := testObject.SearchArtist("u2")
+		assert.NoError(t, err)
+		assert.Equal(t, "Seven Mary Three", actual.Items[0].Name)
+	})
+}
+
+func Test_AddSongToPlaylist(t *testing.T) {
+	t.Run("success", func(t *testing.T) {
+		tripper := new(mocks.RoundTripFunc)
+		transport := &RecordingTransport{
+			Tripper: tripper.Execute,
+		}
+		loginResponse := &http.Response{
+			Body:       ioutil.NopCloser(strings.NewReader(`{"userId":123,"sessionId":"thesessionid","countryCode":"GR"}`)),
+			StatusCode: http.StatusOK,
+		}
+		preflight := &http.Response{
+			Body:       ioutil.NopCloser(strings.NewReader("")),
+			StatusCode: http.StatusOK,
+			Header:     http.Header{"etag": []string{"your_it"}},
 		}
 		b, err := ioutil.ReadFile("./test_data/create_playlist_response.json")
 		require.NoError(t, err)
@@ -146,7 +191,10 @@ func Test_AddSongToPlaylist(t *testing.T) {
 			return r.URL.String() == "https://api.tidal.com/v1/login/username"
 		})).Return(loginResponse, nil).Once()
 		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
-			matches := r.URL.String() == "https://api.tidal.com/v1/users/123/playlists?countryCode=FR"
+			return r.URL.String() == "https://api.tidal.com/v1/users/123/playlists?offset=0&limit=50&order=DATE_UPDATED&orderDirection=DESC&countryCode=GR"
+		})).Return(preflight, nil).Once()
+		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
+			matches := r.URL.String() == "https://listen.tidal.com/v1/playlists/megalist_uuid/items?countryCode=GR"
 			if !matches {
 				t.Logf("matching %+v\n", r.URL.String())
 			}
@@ -158,7 +206,7 @@ func Test_AddSongToPlaylist(t *testing.T) {
 		})
 
 		require.NoError(t, testObject.Login("fred", "yabba-dabba-do"))
-		err = testObject.AddSongToPlaylist("megalist")
+		err = testObject.AddSongToPlaylist("megalist_uuid")
 		assert.NoError(t, err)
 	})
 }
