@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"errors"
 	"io/ioutil"
+	"music_load/tidal"
+	"music_load/tidal/mocks"
 	"net/http"
-	"spotify_load/tidal"
-	"spotify_load/tidal/mocks"
 	"strings"
 	"testing"
 

@@ -1,4 +1,4 @@
-module spotify_load
+module music_load 
 
 go 1.14
 

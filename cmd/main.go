@@ -1,17 +1,11 @@
 package main
 
-/*
-start with setting up spotify developer account: https://developer.spotify.com/documentation/web-api/quick-start/
- * https://developer.spotify.com/dashboard/applications
-
-*/
-
 import (
 	"flag"
 	"fmt"
 	"math/rand"
+	"music_load/tidal"
 	"os"
-	"spotify_load/tidal"
 	"strconv"
 )
 
@@ -23,17 +17,6 @@ func main() {
 	flag.Parse()
 
 	t := tidal.New()
-
-	// t.HandleAuthCallback()
-	// if err := t.Authorize(); err != nil {
-	// 	fmt.Println("failed to get authorization: ", err)
-	// 	os.Exit(1)
-	// }
-
-	// select {
-	// case <-t.CredentialsChan:
-	// 	// go for it!
-	// }
 
 	if *usernameFlag == "" || *passwordFlag == "" {
 		flag.Usage()

@@ -1,0 +1,32 @@
+{
+  "limit": 25,
+  "offset": 0,
+  "totalNumberOfItems": 1,
+  "items": [
+    {
+      "id": 14873,
+      "name": "Seven Mary Three",
+      "artistTypes": [
+        "ARTIST",
+        "CONTRIBUTOR"
+      ],
+      "url": "http://www.tidal.com/artist/14873",
+      "picture": "ce4936c2-6385-408b-b4d4-72689e4dae07",
+      "popularity": 37,
+      "artistRoles": [
+        {
+          "categoryId": -1,
+          "category": "Artist"
+        },
+        {
+          "categoryId": 2,
+          "category": "Songwriter"
+        }
+      ],
+      "mixes": {
+        "MASTER_ARTIST_MIX": "0153d0c5f24cbcb89aa43a2d29c960",
+        "ARTIST_MIX": "000ea872e90a19191aba3e92dc2ae9"
+      }
+    }
+  ]
+}
