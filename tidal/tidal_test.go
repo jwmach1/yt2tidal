@@ -5,11 +5,11 @@ import (
 	"encoding/json"
 	"errors"
 	"io/ioutil"
-	"music_load/tidal"
-	"music_load/tidal/mocks"
 	"net/http"
 	"strings"
 	"testing"
+	"yt2tidal/tidal"
+	"yt2tidal/tidal/mocks"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"

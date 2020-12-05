@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 	"math/rand"
-	"music_load/tidal"
 	"os"
 	"strconv"
+	"yt2tidal/tidal"
 )
 
 var usernameFlag = flag.String("username", "", "tidal username")
