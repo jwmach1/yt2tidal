@@ -172,10 +172,64 @@ func (t *Tidal) SearchArtist(name string) (ArtistSearch, error) {
 	defer resp.Body.Close()
 
 	b, _ := ioutil.ReadAll(resp.Body)
-	fmt.Printf("Search:\n%s\n", b)
+	// fmt.Printf("Search:\n%s\n", b)
 
 	result := ArtistSearch{}
 	err = json.NewDecoder(bytes.NewReader(b)).Decode(&result)
 
 	return result, err
+}
+
+func (t *Tidal) GetAlbumsForArtist(id int) (AlbumSearch, error) {
+	data := url.Values{}
+	data.Add("filter", "ALL")
+	data.Add("limit", "25")
+	data.Add("offset", "0")
+	data.Add("countryCode", t.session.CountryCode)
+
+	url := fmt.Sprintf("https://api.tidal.com/v1/artists/%d/albums?%s", id, data.Encode())
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Set("X-Tidal-Token", apiToken)
+	req.Header.Add("X-Tidal-SessionId", t.session.SessionID)
+
+	resp, err := t.client.Do(req)
+	if err != nil {
+		return AlbumSearch{}, err
+	}
+	defer resp.Body.Close()
+
+	b, _ := ioutil.ReadAll(resp.Body)
+	// fmt.Printf("Albums of %d:\n%s\n", id, b)
+
+	var results AlbumSearch
+	json.NewDecoder(bytes.NewReader(b)).Decode(&results)
+
+	return results, err
+}
+
+func (t *Tidal) GetTracksForAlbum(id int) (Tracks, error) {
+	data := url.Values{}
+	data.Add("filter", "ALL")
+	data.Add("limit", "50")
+	data.Add("offset", "0")
+	data.Add("countryCode", t.session.CountryCode)
+
+	url := fmt.Sprintf("https://api.tidal.com/v1/albums/%d/tracks?%s", id, data.Encode())
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Set("X-Tidal-Token", apiToken)
+	req.Header.Add("X-Tidal-SessionId", t.session.SessionID)
+
+	resp, err := t.client.Do(req)
+	if err != nil {
+		return Tracks{}, err
+	}
+	defer resp.Body.Close()
+
+	b, _ := ioutil.ReadAll(resp.Body)
+	// fmt.Printf("tracks of %d:\n%s\n", id, b)
+
+	var results Tracks
+	json.NewDecoder(bytes.NewReader(b)).Decode(&results)
+
+	return results, err
 }

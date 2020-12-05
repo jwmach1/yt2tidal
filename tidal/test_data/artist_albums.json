@@ -1,0 +1,273 @@
+{
+    "limit": 25,
+    "offset": 0,
+    "totalNumberOfItems": 7,
+    "items": [
+        {
+            "id": 88932695,
+            "title": "Cumbersome",
+            "duration": 6283,
+            "streamReady": true,
+            "streamStartDate": "2018-05-17T00:00:00.000+0000",
+            "allowStreaming": true,
+            "premiumStreamingOnly": false,
+            "numberOfTracks": 27,
+            "numberOfVideos": 0,
+            "numberOfVolumes": 1,
+            "releaseDate": "2018-05-17",
+            "copyright": "2018 Warner Music Group - X5 Music Group",
+            "type": "ALBUM",
+            "version": null,
+            "url": "http://www.tidal.com/album/88932695",
+            "cover": "ad81cde1-832b-4c31-9a4e-8cbe81bc474c",
+            "videoCover": null,
+            "explicit": true,
+            "upc": "842474173480",
+            "popularity": 4,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ]
+        },
+        {
+            "id": 11896645,
+            "title": "Backbooth",
+            "duration": 3917,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "allowStreaming": true,
+            "premiumStreamingOnly": false,
+            "numberOfTracks": 17,
+            "numberOfVideos": 0,
+            "numberOfVolumes": 1,
+            "releaseDate": "2010-02-09",
+            "copyright": "2009 Settle Up Records",
+            "type": "ALBUM",
+            "version": null,
+            "url": "http://www.tidal.com/album/11896645",
+            "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+            "videoCover": null,
+            "explicit": false,
+            "upc": "843436065904",
+            "popularity": 9,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ]
+        },
+        {
+            "id": 9452613,
+            "title": "Churn",
+            "duration": 3056,
+            "streamReady": true,
+            "streamStartDate": "2008-12-09T00:00:00.000+0000",
+            "allowStreaming": true,
+            "premiumStreamingOnly": false,
+            "numberOfTracks": 10,
+            "numberOfVideos": 0,
+            "numberOfVolumes": 1,
+            "releaseDate": "2008-12-09",
+            "copyright": "2008 Seven Mary Three Touring, Inc",
+            "type": "ALBUM",
+            "version": null,
+            "url": "http://www.tidal.com/album/9452613",
+            "cover": "14507f0d-3edc-4427-9ac5-978c2734ada4",
+            "videoCover": null,
+            "explicit": false,
+            "upc": "884385079468",
+            "popularity": 2,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ]
+        },
+        {
+            "id": 37163909,
+            "title": "The Economy Of Sound",
+            "duration": 2431,
+            "streamReady": true,
+            "streamStartDate": "2004-09-01T00:00:00.000+0000",
+            "allowStreaming": true,
+            "premiumStreamingOnly": false,
+            "numberOfTracks": 12,
+            "numberOfVideos": 0,
+            "numberOfVolumes": 1,
+            "releaseDate": "2001-06-05",
+            "copyright": "© 2001 Mammoth Records, Inc.",
+            "type": "ALBUM",
+            "version": null,
+            "url": "http://www.tidal.com/album/37163909",
+            "cover": "ac6d8d31-939e-4b7c-96fc-8e7154e23b5c",
+            "videoCover": null,
+            "explicit": false,
+            "upc": "00720616551627",
+            "popularity": 1,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ]
+        },
+        {
+            "id": 281165,
+            "title": "Orange Ave.",
+            "duration": 2845,
+            "streamReady": true,
+            "streamStartDate": "2005-08-30T00:00:00.000+0000",
+            "allowStreaming": true,
+            "premiumStreamingOnly": false,
+            "numberOfTracks": 12,
+            "numberOfVideos": 0,
+            "numberOfVolumes": 1,
+            "releaseDate": "1998-07-14",
+            "copyright": "© 2005 Warner Strategic Marketing",
+            "type": "ALBUM",
+            "version": null,
+            "url": "http://www.tidal.com/album/281165",
+            "cover": "8b185082-7430-4d93-a081-b9297ca4d50e",
+            "videoCover": null,
+            "explicit": true,
+            "upc": "081227307967",
+            "popularity": 2,
+            "audioQuality": "HI_RES",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ]
+        },
+        {
+            "id": 3467411,
+            "title": "Rock Crown",
+            "duration": 3158,
+            "streamReady": true,
+            "streamStartDate": "2010-02-16T00:00:00.000+0000",
+            "allowStreaming": true,
+            "premiumStreamingOnly": false,
+            "numberOfTracks": 15,
+            "numberOfVideos": 0,
+            "numberOfVolumes": 1,
+            "releaseDate": "1997-06-03",
+            "copyright": "© 1997 Atlantic Recording Corp. and Mammoth Records",
+            "type": "ALBUM",
+            "version": null,
+            "url": "http://www.tidal.com/album/3467411",
+            "cover": "cf78c5b2-031e-4874-a894-f91d639f25d3",
+            "videoCover": null,
+            "explicit": false,
+            "upc": "075678301865",
+            "popularity": 10,
+            "audioQuality": "HI_RES",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ]
+        },
+        {
+            "id": 3029317,
+            "title": "American Standard",
+            "duration": 2754,
+            "streamReady": true,
+            "streamStartDate": "2009-07-14T00:00:00.000+0000",
+            "allowStreaming": true,
+            "premiumStreamingOnly": false,
+            "numberOfTracks": 11,
+            "numberOfVideos": 0,
+            "numberOfVolumes": 1,
+            "releaseDate": "1995-10-01",
+            "copyright": "© 1995 Atlantic Recording Corp.",
+            "type": "ALBUM",
+            "version": null,
+            "url": "http://www.tidal.com/album/3029317",
+            "cover": "d2a9bcb0-45e4-4e3a-9f67-e616496edf26",
+            "videoCover": null,
+            "explicit": true,
+            "upc": "603497967988",
+            "popularity": 39,
+            "audioQuality": "HI_RES",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ]
+        }
+    ]
+}

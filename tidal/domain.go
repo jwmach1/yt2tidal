@@ -76,18 +76,20 @@ type Item struct {
 	Item    Track  `json:"item"`
 }
 
+type ResultHeader struct {
+	Limit              int `json:"limit"`
+	Offset             int `json:"offset"`
+	TotalNumberOfItems int `json:"totalNumberOfItems"`
+}
+
 type Tracks struct {
-	Limit              int     `json:"limit"`
-	Offset             int     `json:"offset"`
-	TotalNumberOfItems int     `json:"totalNumberOfItems"`
-	Items              []Track `json:"items"`
+	*ResultHeader
+	Items []Track `json:"items"`
 }
 
 type TracksFavorite struct {
-	Limit              int    `json:"limit"`
-	Offset             int    `json:"offset"`
-	TotalNumberOfItems int    `json:"totalNumberOfItems"`
-	Items              []Item `json:"items"`
+	*ResultHeader
+	Items []Item `json:"items"`
 }
 
 type Creator struct {
@@ -114,17 +116,10 @@ type Playlist struct {
 }
 
 type ArtistSearch struct {
+	*ResultHeader
 	Items []Artist `json:"items"`
 }
-type Search struct {
-	Items  []Album `json:"items"`
-	Albums struct {
-		Items []Album `json:"items"`
-	} `json:"albums"`
-	Artists struct {
-		Items []Artist `json:"items"`
-	} `json:"artists"`
-	Tracks struct {
-		Items []Track `json:"items"`
-	} `json:"tracks"`
+type AlbumSearch struct {
+	*ResultHeader
+	Items []Album `json:"items"`
 }

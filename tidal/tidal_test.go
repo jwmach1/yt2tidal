@@ -163,6 +163,90 @@ func Test_SearchArtist(t *testing.T) {
 		actual, err := testObject.SearchArtist("u2")
 		assert.NoError(t, err)
 		assert.Equal(t, "Seven Mary Three", actual.Items[0].Name)
+		assert.Equal(t, 14873, actual.Items[0].ID)
+	})
+}
+
+func Test_GetAlbumsForArtist(t *testing.T) {
+	t.Run("success", func(t *testing.T) {
+		tripper := new(mocks.RoundTripFunc)
+		transport := &RecordingTransport{
+			Tripper: tripper.Execute,
+		}
+		loginResponse := &http.Response{
+			Body:       ioutil.NopCloser(strings.NewReader(`{"userId":123,"sessionId":"thesessionid","countryCode":"FR"}`)),
+			StatusCode: http.StatusOK,
+		}
+		b, err := ioutil.ReadFile("./test_data/artist_albums.json")
+		require.NoError(t, err)
+		searchResponse := &http.Response{
+			Body:       ioutil.NopCloser(bytes.NewReader(b)),
+			StatusCode: http.StatusOK,
+		}
+
+		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
+			return r.URL.String() == "https://api.tidal.com/v1/login/username"
+		})).Return(loginResponse, nil).Once()
+		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
+			matches := r.URL.String() == "https://api.tidal.com/v1/artists/123/albums?countryCode=FR&filter=ALL&limit=25&offset=0"
+			if !matches {
+				t.Logf("matching failed %+v\n", r.URL.String())
+			}
+			return matches
+		})).Return(searchResponse, nil).Once()
+
+		testObject := tidal.NewClient(http.Client{
+			Transport: transport,
+		})
+
+		require.NoError(t, testObject.Login("fred", "yabba-dabba-do"))
+		actual, err := testObject.GetAlbumsForArtist(123)
+		assert.NoError(t, err)
+		assert.Equal(t, "Cumbersome", actual.Items[0].Title)
+		assert.Equal(t, 88932695, actual.Items[0].ID)
+		assert.Equal(t, 7, actual.TotalNumberOfItems)
+	})
+}
+
+func Test_GetTracksForAlbums(t *testing.T) {
+	t.Run("success", func(t *testing.T) {
+		tripper := new(mocks.RoundTripFunc)
+		transport := &RecordingTransport{
+			Tripper: tripper.Execute,
+		}
+		loginResponse := &http.Response{
+			Body:       ioutil.NopCloser(strings.NewReader(`{"userId":123,"sessionId":"thesessionid","countryCode":"FR"}`)),
+			StatusCode: http.StatusOK,
+		}
+		b, err := ioutil.ReadFile("./test_data/getTracksForAlbum.json")
+		require.NoError(t, err)
+		searchResponse := &http.Response{
+			Body:       ioutil.NopCloser(bytes.NewReader(b)),
+			StatusCode: http.StatusOK,
+		}
+
+		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
+			return r.URL.String() == "https://api.tidal.com/v1/login/username"
+		})).Return(loginResponse, nil).Once()
+		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
+			matches := r.URL.String() == "https://api.tidal.com/v1/albums/456/tracks?countryCode=FR&filter=ALL&limit=50&offset=0"
+			if !matches {
+				t.Logf("matching failed %+v\n", r.URL.String())
+			}
+			return matches
+		})).Return(searchResponse, nil).Once()
+
+		testObject := tidal.NewClient(http.Client{
+			Transport: transport,
+		})
+
+		require.NoError(t, testObject.Login("fred", "yabba-dabba-do"))
+		actual, err := testObject.GetTracksForAlbum(456)
+		assert.NoError(t, err)
+		require.Len(t, actual.Items, 17)
+		assert.Equal(t, "Last Kiss", actual.Items[1].Title)
+		assert.Equal(t, 11896647, actual.Items[1].ID)
+		assert.Equal(t, 17, actual.TotalNumberOfItems)
 	})
 }
 

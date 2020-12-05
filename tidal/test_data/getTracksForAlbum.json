@@ -1,0 +1,776 @@
+{
+    "limit": 50,
+    "offset": 0,
+    "totalNumberOfItems": 17,
+    "items": [
+        {
+            "id": 11896646,
+            "title": "Untitled",
+            "duration": 210,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 1,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 2,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896646",
+            "isrc": "US6LP0900001",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "001578ec2f81f360250cf59b99ac6c"
+            }
+        },
+        {
+            "id": 11896647,
+            "title": "Last Kiss",
+            "duration": 241,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 2,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896647",
+            "isrc": "US6LP0900002",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "0017bc17cd4a2560e28153e1386337"
+            }
+        },
+        {
+            "id": 11896648,
+            "title": "Oceans of Envy",
+            "duration": 211,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 3,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896648",
+            "isrc": "US6LP0900003",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "0013c89eb085dc04112c5da9318d38"
+            }
+        },
+        {
+            "id": 11896649,
+            "title": "Wait",
+            "duration": 187,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 4,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896649",
+            "isrc": "US6LP0900004",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "001a9facef39222eb74b8710521b8f"
+            }
+        },
+        {
+            "id": 11896650,
+            "title": "Laughing Out Loud",
+            "duration": 211,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 5,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896650",
+            "isrc": "US6LP0900005",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "001c39de149a647ed4f62c24164360"
+            }
+        },
+        {
+            "id": 11896651,
+            "title": "Dreaming Against Me",
+            "duration": 187,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 6,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896651",
+            "isrc": "US6LP0900006",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "001791ea1db339181c03990991a3bd"
+            }
+        },
+        {
+            "id": 11896652,
+            "title": "Home Stretch",
+            "duration": 209,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 7,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896652",
+            "isrc": "US6LP0900007",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "MASTER_TRACK_MIX": "01451a3927ce7337af8fcedc28142e",
+                "TRACK_MIX": "0012aca9d4d9e3f28bf0fc0c2ff2ca"
+            }
+        },
+        {
+            "id": 11896653,
+            "title": "Dead Days in the Kitchen",
+            "duration": 221,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 8,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896653",
+            "isrc": "US6LP0900008",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "0014ad64763b4b5aee3f8032774cc2"
+            }
+        },
+        {
+            "id": 11896654,
+            "title": "She Wants Results",
+            "duration": 261,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 9,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896654",
+            "isrc": "US6LP0900009",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "001e40e61612a12ac5708305da2a93"
+            }
+        },
+        {
+            "id": 11896655,
+            "title": "Flagship Eleanor",
+            "duration": 170,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 10,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896655",
+            "isrc": "US6LP0900010",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "MASTER_TRACK_MIX": "014dec2e3fb9c0a444aa0fcde753a6",
+                "TRACK_MIX": "00145197f5c6b193d566734640ca91"
+            }
+        },
+        {
+            "id": 11896656,
+            "title": "Upside Down",
+            "duration": 262,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 11,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896656",
+            "isrc": "US6LP0900011",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "0015aaedd80e3a9ac405850a23671c"
+            }
+        },
+        {
+            "id": 11896657,
+            "title": "Hammer & a Stone",
+            "duration": 283,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 12,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896657",
+            "isrc": "US6LP0900013",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "0012bc0e9c8f4200a236b2a5c23bec"
+            }
+        },
+        {
+            "id": 11896658,
+            "title": "Each Little Mystery",
+            "duration": 193,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 13,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896658",
+            "isrc": "US6LP0900014",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "00182a8d75ee86fc1252258cfa0d0a"
+            }
+        },
+        {
+            "id": 11896659,
+            "title": "Southwestern State",
+            "duration": 350,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 14,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896659",
+            "isrc": "US6LP0900015",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "MASTER_TRACK_MIX": "014970e39f4ce19bd3cf3fb34929c9",
+                "TRACK_MIX": "00123e7854b8639e99b87d861fe24a"
+            }
+        },
+        {
+            "id": 11896660,
+            "title": "Lucky",
+            "duration": 252,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 15,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896660",
+            "isrc": "US6LP0900016",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "MASTER_TRACK_MIX": "0141a6d9d790c44109a4fc5a93b0c5",
+                "TRACK_MIX": "001a1ccc80ce28ec0b712e3a2a05f9"
+            }
+        },
+        {
+            "id": 11896661,
+            "title": "That's How Strong My Love Is",
+            "duration": 185,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 16,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 2,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896661",
+            "isrc": "US6LP0900017",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "0018edc22f171cf5306b330c0c5691"
+            }
+        },
+        {
+            "id": 11896662,
+            "title": "Walk With the Devil",
+            "duration": 280,
+            "replayGain": -9.24,
+            "peak": 1.0,
+            "allowStreaming": true,
+            "streamReady": true,
+            "streamStartDate": "2010-02-09T00:00:00.000+0000",
+            "premiumStreamingOnly": false,
+            "trackNumber": 17,
+            "volumeNumber": 1,
+            "version": null,
+            "popularity": 1,
+            "copyright": "2009 Settle Up Records",
+            "url": "http://www.tidal.com/track/11896662",
+            "isrc": "US6LP0900018",
+            "editable": false,
+            "explicit": false,
+            "audioQuality": "LOSSLESS",
+            "audioModes": [
+                "STEREO"
+            ],
+            "artist": {
+                "id": 14873,
+                "name": "Seven Mary Three",
+                "type": "MAIN"
+            },
+            "artists": [
+                {
+                    "id": 14873,
+                    "name": "Seven Mary Three",
+                    "type": "MAIN"
+                }
+            ],
+            "album": {
+                "id": 11896645,
+                "title": "Backbooth",
+                "cover": "45cfeccf-1411-47e3-b2b8-a210b93bac39",
+                "videoCover": null
+            },
+            "mixes": {
+                "TRACK_MIX": "0015de5e8e138f2f402d43cf6572d8"
+            }
+        }
+    ]
+}
