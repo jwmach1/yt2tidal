@@ -101,12 +101,6 @@ func (t *Tidal) CreatePlaylist(title string) (Playlist, error) {
 //Request URL: https://listen.tidal.com/v1/playlists/d1455749-1cb0-4da8-aa77-4d9a8fde0a78/items?countryCode=US
 //onArtifactNotFound=FAIL&onDupes=FAIL&trackIds=3029318%2C3029322
 func (t *Tidal) AddSongToPlaylist(playlistUUID string, trackIDs ...string) error {
-	/*
-	   requires preflight GET request with nil body
-	   --->  https://listen.tidal.com/v1/users/175289677/playlists?offset=13&limit=50&order=DATE_UPDATED&orderDirection=DESC&countryCod
-	   --> harvest etag response header
-
-	*/
 	etag, err := t.preflight()
 	if err != nil {
 		return err
@@ -115,9 +109,7 @@ func (t *Tidal) AddSongToPlaylist(playlistUUID string, trackIDs ...string) error
 	data := url.Values{}
 	data.Set("onArtifactNotFound", "FAIL")
 	data.Set("onDupes", "FAIL")
-	for _, id := range trackIDs {
-		data.Add("trackIds", id)
-	}
+	data.Set("trackIds", strings.Join(trackIDs, ","))
 	url := fmt.Sprintf("https://listen.tidal.com/v1/playlists/%s/items?countryCode=%s", playlistUUID, t.session.CountryCode)
 	req, _ := http.NewRequest("POST", url, strings.NewReader(data.Encode()))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -141,6 +133,9 @@ func (t *Tidal) AddSongToPlaylist(playlistUUID string, trackIDs ...string) error
 	return err
 }
 
+// preflight is the required GET request for the etag to be sent in modifying a playlist
+//	  https://listen.tidal.com/v1/users/175289677/playlists?offset=13&limit=50&order=DATE_UPDATED&orderDirection=DESC&countryCod
+//	  harvest etag response header
 func (t *Tidal) preflight() (string, error) {
 
 	url := fmt.Sprintf("https://api.tidal.com/v1/users/%d/playlists?offset=0&limit=50&order=DATE_UPDATED&orderDirection=DESC&countryCode=%s", t.session.UserID, t.session.CountryCode)
@@ -161,7 +156,6 @@ func (t *Tidal) preflight() (string, error) {
 }
 
 func (t *Tidal) SearchArtist(name string) (ArtistSearch, error) {
-	//req.Header.Add("X-Tidal-SessionId", s.SessionID)
 	data := url.Values{}
 	data.Add("query", name)
 	data.Add("limit", "25")

@@ -16,9 +16,10 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-type RoundTripFunc func(r *http.Request) (*http.Response, error)
-
 //go:generate  mockery --name=RoundTripFunc
+// this seemed like a good idea to try, I'm not sure if I like how verbose it got
+// on the upside, there is a lot of possiblity to further assert the request.
+type RoundTripFunc func(r *http.Request) (*http.Response, error)
 
 func Test_UnmarshalSession(t *testing.T) {
 	sample := `{"userId":123456789,"sessionId":"fb49e2f6-529c-470a-90dd-f15b612ab8d4","countryCode":"US"}`
