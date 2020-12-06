@@ -8,12 +8,22 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"strconv"
 	"strings"
 )
 
 const (
 	apiToken = "wc8j_yBJd20zOmx0"
 	clientID = "ck3zaWMi8Ka_XdI0"
+)
+
+type SearchType int
+
+const (
+	SearchTypeAlbum SearchType = iota
+	SearchTypeArtist
+	SearchTypePlaylist
+	SearchTypeTrack
 )
 
 type Tidal struct {
@@ -100,16 +110,23 @@ func (t *Tidal) CreatePlaylist(title string) (Playlist, error) {
 
 //Request URL: https://listen.tidal.com/v1/playlists/d1455749-1cb0-4da8-aa77-4d9a8fde0a78/items?countryCode=US
 //onArtifactNotFound=FAIL&onDupes=FAIL&trackIds=3029318%2C3029322
-func (t *Tidal) AddSongToPlaylist(playlistUUID string, trackIDs ...string) error {
+func (t *Tidal) AddSongToPlaylist(playlistUUID string, trackIDs ...int) error {
 	etag, err := t.preflight()
 	if err != nil {
 		return err
+	}
+	if len(trackIDs) == 0 {
+		return nil
 	}
 
 	data := url.Values{}
 	data.Set("onArtifactNotFound", "FAIL")
 	data.Set("onDupes", "FAIL")
-	data.Set("trackIds", strings.Join(trackIDs, ","))
+	sids := make([]string, len(trackIDs))
+	for i, id := range trackIDs {
+		sids[i] = strconv.Itoa(id)
+	}
+	data.Set("trackIds", strings.Join(sids, ","))
 	url := fmt.Sprintf("https://listen.tidal.com/v1/playlists/%s/items?countryCode=%s", playlistUUID, t.session.CountryCode)
 	req, _ := http.NewRequest("POST", url, strings.NewReader(data.Encode()))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")

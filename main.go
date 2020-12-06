@@ -76,7 +76,7 @@ func main() {
 			for i, t := range albumsFromMap.Items {
 				titles[i] = t.Title
 			}
-			fmt.Printf("failed to find album for playlist song (%s) among %s\n", song.Album, strings.Join(titles, ","))
+			fmt.Printf("failed to find album for playlist song (%s) among %s\n", song.Title, strings.Join(titles, ","))
 			continue
 		}
 
@@ -100,8 +100,8 @@ func main() {
 			}
 		}
 		if !found {
-			titles := make([]string, len(thisSongsAlbum.Tracks.Items))
-			for i, track := range thisSongsAlbum.Tracks.Items {
+			titles := make([]string, len(tracksFromMap.Items))
+			for i, track := range tracksFromMap.Items {
 				titles[i] = track.Title
 			}
 			fmt.Printf("failed to find %s among %s\n", song.Title, strings.Join(titles, ","))
@@ -116,6 +116,6 @@ func main() {
 	pl, err := t.CreatePlaylist(playlist.Title)
 	fmt.Println("create playlist error? ", err)
 
-	err = t.AddSongToPlaylist(pl.UUID, "3029318", "3029322")
+	err = t.AddSongToPlaylist(pl.UUID, songIDs...)
 	fmt.Println("add song error? ", err)
 }
