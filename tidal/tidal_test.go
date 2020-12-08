@@ -188,7 +188,7 @@ func Test_GetAlbumsForArtist(t *testing.T) {
 			return r.URL.String() == "https://api.tidal.com/v1/login/username"
 		})).Return(loginResponse, nil).Once()
 		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
-			matches := r.URL.String() == "https://api.tidal.com/v1/artists/123/albums?countryCode=FR&filter=ALL&limit=25&offset=0"
+			matches := r.URL.String() == "https://api.tidal.com/v1/artists/123/albums?countryCode=FR&limit=25&offset=0"
 			if !matches {
 				t.Logf("matching failed %+v\n", r.URL.String())
 			}
@@ -200,7 +200,7 @@ func Test_GetAlbumsForArtist(t *testing.T) {
 		})
 
 		require.NoError(t, testObject.Login("fred", "yabba-dabba-do"))
-		actual, err := testObject.GetAlbumsForArtist(123)
+		actual, err := testObject.GetAlbumsForArtist(123, tidal.NoneFilter)
 		assert.NoError(t, err)
 		assert.Equal(t, "Cumbersome", actual.Items[0].Title)
 		assert.Equal(t, 88932695, actual.Items[0].ID)

@@ -34,88 +34,100 @@ func main() {
 		fmt.Printf("login failed %v", err)
 		os.Exit(-1)
 	}
-
 	var songIDs []int
-	artistsMap := make(map[string]tidal.Artist)
-	albumsMap := make(map[int]tidal.AlbumSearch)
-	tracksmap := make(map[int]tidal.Tracks)
-	for _, song := range playlist.Songs {
-		artistFromMap, ok := artistsMap[song.Artist]
-		if !ok {
-			artistSearch, err := t.SearchArtist(song.Artist)
-			if err != nil {
-				fmt.Printf("failed to find playlist artist %s : %v\n", song.Artist, err)
-				continue
-			}
-			if len(artistSearch.Items) != 1 {
-				fmt.Printf("found not only one artist %s but %d\n", song.Artist, len(artistSearch.Items))
-				continue
-			}
-			artistFromMap = artistSearch.Items[0]
-			artistsMap[song.Artist] = artistFromMap
-		}
-		albumsFromMap, ok := albumsMap[artistFromMap.ID]
-		if !ok {
-			albumSearch, err := t.GetAlbumsForArtist(artistFromMap.ID)
-			if err != nil {
-				fmt.Printf("failed to get albums for artist %s (%d) : %v\n", song.Artist, artistFromMap.ID, err)
-				continue
-			}
-			albumsMap[artistFromMap.ID] = albumSearch
-			albumsFromMap = albumSearch
-		}
-		var thisSongsAlbum tidal.Album
-		for _, album := range albumsFromMap.Items {
-			if album.Title == song.Album {
-				thisSongsAlbum = album
-				break
-			}
-		}
-		if thisSongsAlbum.ID == 0 {
-			titles := make([]string, len(albumsFromMap.Items))
-			for i, t := range albumsFromMap.Items {
-				titles[i] = t.Title
-			}
-			fmt.Printf("failed to find album for playlist song (%s) among %s\n", song.Title, strings.Join(titles, ","))
-			continue
-		}
-
-		tracksFromMap, ok := tracksmap[thisSongsAlbum.ID]
-		if !ok {
-			fmt.Println("getting tracks for album ", thisSongsAlbum.Title)
-			tracksSearch, err := t.GetTracksForAlbum(thisSongsAlbum.ID)
-			if err != nil {
-				fmt.Printf("failed to get tracks for album %s (%d) : %v\n", thisSongsAlbum.Title, thisSongsAlbum.ID, err)
-				continue
-			}
-			tracksFromMap = tracksSearch
-			tracksmap[thisSongsAlbum.ID] = tracksFromMap
-		}
-		var found bool
-		for _, track := range tracksFromMap.Items {
-			if strings.ToLower(track.Title) == strings.ToLower(song.Title) {
-				songIDs = append(songIDs, track.ID)
-				found = true
-				break
-			}
-		}
-		if !found {
-			titles := make([]string, len(tracksFromMap.Items))
-			for i, track := range tracksFromMap.Items {
-				titles[i] = track.Title
-			}
-			fmt.Printf("failed to find %s among %s\n", song.Title, strings.Join(titles, ","))
-		}
-	}
+	songIDs = buildSongList(t, playlist)
 
 	if *dryrunFlag {
-		fmt.Printf("dry run complete\n\tfound %d songs of %d in playlist\n", len(songIDs), len(playlist.Songs))
+		fmt.Printf("dry run complete\n\tfound %d songs of %d for playlist %s\n", len(songIDs), len(playlist.Songs), playlist.Title)
 		return
 	}
 
 	pl, err := t.CreatePlaylist(playlist.Title)
-	fmt.Println("create playlist error? ", err)
+	if err != nil {
+		fmt.Println("failed to create playlist ", err)
+		os.Exit(-2)
+	}
 
 	err = t.AddSongToPlaylist(pl.UUID, songIDs...)
-	fmt.Println("add song error? ", err)
+	if err != nil {
+		fmt.Printf("failed to add songs %d: %s\n", len(songIDs), err)
+	} else {
+		fmt.Printf("created playlist %s with %d of %d songs\n\n", playlist.Title, len(songIDs), len(playlist.Songs))
+	}
+}
+
+func buildSongList(t *tidal.Tidal, playlist takeout.Playlist) []int {
+	var songIDs []int
+	var err error
+	artistsMap := make(map[string]tidal.ArtistSearch)
+	albumsMap := make(map[int]tidal.AlbumSearch)
+	tracksMap := make(map[int]tidal.Tracks)
+	for _, song := range playlist.Songs {
+		var haveSong bool
+		var artistSearch tidal.ArtistSearch
+		artistSearch, ok := artistsMap[song.Artist]
+		if !ok {
+			artistSearch, err = t.SearchArtist(song.Artist)
+			if err != nil {
+				fmt.Printf("failed to find playlist artist %s : %v\n", song.Artist, err)
+				continue
+			}
+			artistsMap[song.Artist] = artistSearch
+		}
+
+		for _, artist := range artistSearch.Items {
+			var albumSearch tidal.AlbumSearch
+			albumSearch, ok = albumsMap[artist.ID]
+			if !ok {
+				albumSearch, err = t.GetAlbumsForArtist(artist.ID, tidal.NoneFilter)
+				if err != nil {
+					fmt.Printf("failed to get albums for artist %s (%d) : %v\n", song.Artist, artist.ID, err)
+					continue
+				}
+				if albumSearch.TotalNumberOfItems == 0 {
+					albumSearch, err = t.GetAlbumsForArtist(artist.ID, tidal.CompilationsFilter)
+					if err != nil {
+						fmt.Printf("failed to get albums for artist %s (%d) : %v\n", song.Artist, artist.ID, err)
+						continue
+					}
+				}
+				albumsMap[artist.ID] = albumSearch
+			}
+
+			// fmt.Printf("artist %s (%d) has %d albums\n", artist.Name, artist.ID, albumSearch.TotalNumberOfItems)
+			for _, album := range albumSearch.Items {
+				var tracksSearch tidal.Tracks
+				tracksSearch, ok = tracksMap[album.ID]
+				if !ok {
+					tracksSearch, err = t.GetTracksForAlbum(album.ID)
+					if err != nil {
+						fmt.Printf("failed to get tracks for album %s (%d) : %v\n", album.Title, album.ID, err)
+						continue
+					}
+					tracksMap[album.ID] = tracksSearch
+				}
+				for _, track := range tracksSearch.Items {
+					if strings.ToLower(track.Title) == strings.ToLower(song.Title) {
+						songIDs = append(songIDs, track.ID)
+						fmt.Println("have track " + track.Title)
+						haveSong = true
+						break
+					}
+				}
+				if haveSong {
+					break
+				} else {
+					// fmt.Printf("song %s not on %s\n", song.Title, album.Title)
+				}
+			}
+			if haveSong {
+				break
+			}
+		}
+
+		if !haveSong {
+			fmt.Printf("failed to find Artist:%s Album:%s Song:%s\n", song.Artist, song.Album, song.Title)
+		}
+	}
+	return songIDs
 }
