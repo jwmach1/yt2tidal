@@ -10,6 +10,9 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"time"
+
+	"github.com/patrickmn/go-cache"
 )
 
 const (
@@ -37,6 +40,7 @@ type Tidal struct {
 	session         *Session
 	client          http.Client
 	CredentialsChan chan bool
+	cache           *cache.Cache
 }
 
 type Session struct {
@@ -53,6 +57,7 @@ func NewClient(client http.Client) *Tidal {
 	return &Tidal{
 		client:          client,
 		CredentialsChan: make(chan bool),
+		cache:           cache.New(30*time.Minute, 30*time.Minute),
 	}
 }
 
@@ -180,6 +185,10 @@ func (t *Tidal) preflight() (string, error) {
 }
 
 func (t *Tidal) SearchArtist(name string) (ArtistSearch, error) {
+	if result, ok := t.cache.Get(name); ok {
+		return result.(ArtistSearch), nil
+	}
+
 	data := url.Values{}
 	data.Add("query", name)
 	data.Add("limit", "25")
@@ -201,10 +210,15 @@ func (t *Tidal) SearchArtist(name string) (ArtistSearch, error) {
 	result := ArtistSearch{}
 	err = json.NewDecoder(bytes.NewReader(b)).Decode(&result)
 
+	t.cache.Add(name, result, cache.DefaultExpiration)
 	return result, err
 }
 
 func (t *Tidal) SearchAlbum(name string) (AlbumSearch, error) {
+	if result, ok := t.cache.Get(name); ok {
+		return result.(AlbumSearch), nil
+	}
+
 	data := url.Values{}
 	data.Add("query", name)
 	data.Add("limit", "25")
@@ -226,10 +240,14 @@ func (t *Tidal) SearchAlbum(name string) (AlbumSearch, error) {
 	result := AlbumSearch{}
 	err = json.NewDecoder(bytes.NewReader(b)).Decode(&result)
 
+	t.cache.Add(name, result, cache.DefaultExpiration)
 	return result, err
 }
 
 func (t *Tidal) GetArtist(id int) (ArtistSearch, error) {
+	if result, ok := t.cache.Get(strconv.Itoa(id)); ok {
+		return result.(ArtistSearch), nil
+	}
 	data := url.Values{}
 	data.Add("filter", "ALL")
 	data.Add("limit", "25")
@@ -250,13 +268,18 @@ func (t *Tidal) GetArtist(id int) (ArtistSearch, error) {
 	b, _ := ioutil.ReadAll(resp.Body)
 	// fmt.Printf("Artist %d:\n%s\n", id, b)
 
-	var results ArtistSearch
-	json.NewDecoder(bytes.NewReader(b)).Decode(&results)
+	var result ArtistSearch
+	json.NewDecoder(bytes.NewReader(b)).Decode(&result)
 
-	return results, err
+	t.cache.Add(strconv.Itoa(id), result, cache.DefaultExpiration)
+	return result, err
 }
 
 func (t *Tidal) GetAlbumsForArtist(id int, filter Filter) (AlbumSearch, error) {
+	cacheKey := fmt.Sprintf("%d_%s", id, filter)
+	if result, ok := t.cache.Get(cacheKey); ok {
+		return result.(AlbumSearch), nil
+	}
 	data := url.Values{}
 	if filter != NoneFilter {
 		data.Add("filter", string(filter))
@@ -279,13 +302,18 @@ func (t *Tidal) GetAlbumsForArtist(id int, filter Filter) (AlbumSearch, error) {
 	b, _ := ioutil.ReadAll(resp.Body)
 	// fmt.Printf("Albums of %d:\n%s\n", id, b)
 
-	var results AlbumSearch
-	json.NewDecoder(bytes.NewReader(b)).Decode(&results)
+	var result AlbumSearch
+	json.NewDecoder(bytes.NewReader(b)).Decode(&result)
 
-	return results, err
+	t.cache.Add(cacheKey, result, cache.DefaultExpiration)
+	return result, err
 }
 
 func (t *Tidal) GetTracksForAlbum(id int) (Tracks, error) {
+	if result, ok := t.cache.Get(strconv.Itoa(id)); ok {
+		return result.(Tracks), nil
+	}
+
 	data := url.Values{}
 	data.Add("filter", "ALL")
 	data.Add("limit", "50")
@@ -306,8 +334,9 @@ func (t *Tidal) GetTracksForAlbum(id int) (Tracks, error) {
 	b, _ := ioutil.ReadAll(resp.Body)
 	// fmt.Printf("tracks of %d:\n%s\n", id, b)
 
-	var results Tracks
-	json.NewDecoder(bytes.NewReader(b)).Decode(&results)
+	var result Tracks
+	json.NewDecoder(bytes.NewReader(b)).Decode(&result)
 
-	return results, err
+	t.cache.Add(strconv.Itoa(id), result, cache.DefaultExpiration)
+	return result, err
 }

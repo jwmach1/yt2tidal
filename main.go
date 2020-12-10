@@ -60,52 +60,37 @@ func main() {
 func buildSongList(t *tidal.Tidal, playlist takeout.Playlist) []int {
 	var songIDs []int
 	var err error
-	artistsMap := make(map[string]tidal.ArtistSearch)
-	albumsMap := make(map[int]tidal.AlbumSearch)
-	tracksMap := make(map[int]tidal.Tracks)
 	for _, song := range playlist.Songs {
 		var haveSong bool
 		var artistSearch tidal.ArtistSearch
-		artistSearch, ok := artistsMap[song.Artist]
-		if !ok {
-			artistSearch, err = t.SearchArtist(song.Artist)
-			if err != nil {
-				fmt.Printf("failed to find playlist artist %s : %v\n", song.Artist, err)
-				continue
-			}
-			artistsMap[song.Artist] = artistSearch
+		artistSearch, err = t.SearchArtist(song.Artist)
+		if err != nil {
+			fmt.Printf("failed to find playlist artist %s : %v\n", song.Artist, err)
+			continue
 		}
 
 		for _, artist := range artistSearch.Items {
 			var albumSearch tidal.AlbumSearch
-			albumSearch, ok = albumsMap[artist.ID]
-			if !ok {
-				albumSearch, err = t.GetAlbumsForArtist(artist.ID, tidal.NoneFilter)
+			albumSearch, err = t.GetAlbumsForArtist(artist.ID, tidal.NoneFilter)
+			if err != nil {
+				fmt.Printf("failed to get albums for artist %s (%d) : %v\n", song.Artist, artist.ID, err)
+				continue
+			}
+			if albumSearch.TotalNumberOfItems == 0 {
+				albumSearch, err = t.GetAlbumsForArtist(artist.ID, tidal.CompilationsFilter)
 				if err != nil {
 					fmt.Printf("failed to get albums for artist %s (%d) : %v\n", song.Artist, artist.ID, err)
 					continue
 				}
-				if albumSearch.TotalNumberOfItems == 0 {
-					albumSearch, err = t.GetAlbumsForArtist(artist.ID, tidal.CompilationsFilter)
-					if err != nil {
-						fmt.Printf("failed to get albums for artist %s (%d) : %v\n", song.Artist, artist.ID, err)
-						continue
-					}
-				}
-				albumsMap[artist.ID] = albumSearch
 			}
 
 			// fmt.Printf("artist %s (%d) has %d albums\n", artist.Name, artist.ID, albumSearch.TotalNumberOfItems)
 			for _, album := range albumSearch.Items {
 				var tracksSearch tidal.Tracks
-				tracksSearch, ok = tracksMap[album.ID]
-				if !ok {
-					tracksSearch, err = t.GetTracksForAlbum(album.ID)
-					if err != nil {
-						fmt.Printf("failed to get tracks for album %s (%d) : %v\n", album.Title, album.ID, err)
-						continue
-					}
-					tracksMap[album.ID] = tracksSearch
+				tracksSearch, err = t.GetTracksForAlbum(album.ID)
+				if err != nil {
+					fmt.Printf("failed to get tracks for album %s (%d) : %v\n", album.Title, album.ID, err)
+					continue
 				}
 				for _, track := range tracksSearch.Items {
 					if strings.ToLower(track.Title) == strings.ToLower(song.Title) {
