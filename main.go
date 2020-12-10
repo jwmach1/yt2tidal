@@ -36,6 +36,7 @@ func main() {
 	}
 	var songIDs []int
 	songIDs = buildSongList(t, playlist)
+	// songIDs = buildSongListFromAlbums(t, playlist)
 
 	if *dryrunFlag {
 		fmt.Printf("dry run complete\n\tfound %d songs of %d for playlist %s\n", len(songIDs), len(playlist.Songs), playlist.Title)
@@ -125,6 +126,58 @@ func buildSongList(t *tidal.Tidal, playlist takeout.Playlist) []int {
 			}
 		}
 
+		if !haveSong {
+			fmt.Printf("failed to find Artist:%s Album:%s Song:%s\n", song.Artist, song.Album, song.Title)
+		}
+	}
+	return songIDs
+}
+
+func buildSongListFromAlbums(t *tidal.Tidal, playlist takeout.Playlist) []int {
+	var songIDs []int
+	var err error
+
+	albumsMap := make(map[string]tidal.AlbumSearch)
+	tracksMap := make(map[int]tidal.Tracks)
+	for _, song := range playlist.Songs {
+		var haveSong bool
+		var albumSearch tidal.AlbumSearch
+		albumSearch, ok := albumsMap[song.Album]
+		if !ok {
+			albumSearch, err = t.SearchAlbum(song.Album)
+			if err != nil {
+				fmt.Printf("failed to search albums %s : %v\n", song.Album, err)
+				continue
+			}
+			albumsMap[song.Album] = albumSearch
+		}
+
+		// fmt.Printf("artist %s (%d) has %d albums\n", artist.Name, artist.ID, albumSearch.TotalNumberOfItems)
+		for _, album := range albumSearch.Items {
+			var tracksSearch tidal.Tracks
+			tracksSearch, ok = tracksMap[album.ID]
+			if !ok {
+				tracksSearch, err = t.GetTracksForAlbum(album.ID)
+				if err != nil {
+					fmt.Printf("failed to get tracks for album %s (%d) : %v\n", album.Title, album.ID, err)
+					continue
+				}
+				tracksMap[album.ID] = tracksSearch
+			}
+			for _, track := range tracksSearch.Items {
+				if strings.ToLower(track.Title) == strings.ToLower(song.Title) {
+					songIDs = append(songIDs, track.ID)
+					fmt.Println("have track " + track.Title)
+					haveSong = true
+					break
+				}
+			}
+			if haveSong {
+				break
+			} else {
+				// fmt.Printf("song %s not on %s\n", song.Title, album.Title)
+			}
+		}
 		if !haveSong {
 			fmt.Printf("failed to find Artist:%s Album:%s Song:%s\n", song.Artist, song.Album, song.Title)
 		}

@@ -204,6 +204,31 @@ func (t *Tidal) SearchArtist(name string) (ArtistSearch, error) {
 	return result, err
 }
 
+func (t *Tidal) SearchAlbum(name string) (AlbumSearch, error) {
+	data := url.Values{}
+	data.Add("query", name)
+	data.Add("limit", "25")
+	data.Add("countryCode", t.session.CountryCode)
+
+	req, _ := http.NewRequest("GET", "https://api.tidal.com/v1/search/albums?"+data.Encode(), nil)
+	req.Header.Set("X-Tidal-Token", apiToken)
+	req.Header.Add("X-Tidal-SessionId", t.session.SessionID)
+
+	resp, err := t.client.Do(req)
+	if err != nil {
+		return AlbumSearch{}, err
+	}
+	defer resp.Body.Close()
+
+	b, _ := ioutil.ReadAll(resp.Body)
+	// fmt.Printf("Search:\n%s\n", b)
+
+	result := AlbumSearch{}
+	err = json.NewDecoder(bytes.NewReader(b)).Decode(&result)
+
+	return result, err
+}
+
 func (t *Tidal) GetArtist(id int) (ArtistSearch, error) {
 	data := url.Values{}
 	data.Add("filter", "ALL")
