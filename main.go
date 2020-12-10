@@ -5,7 +5,9 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 	"yt2tidal/takeout"
+	"yt2tidal/text"
 	"yt2tidal/tidal"
 )
 
@@ -35,9 +37,11 @@ func main() {
 		os.Exit(-1)
 	}
 	var songIDs []int
+	begin := time.Now()
 	songIDs = buildSongList(t, playlist)
 	// songIDs = buildSongListFromAlbums(t, playlist)
 
+	fmt.Printf("building tracklist took: %s\n", time.Now().Sub(begin))
 	if *dryrunFlag {
 		fmt.Printf("dry run complete\n\tfound %d songs of %d for playlist %s\n", len(songIDs), len(playlist.Songs), playlist.Title)
 		return
@@ -83,6 +87,9 @@ func buildSongList(t *tidal.Tidal, playlist takeout.Playlist) []int {
 					continue
 				}
 			}
+			if albumSearch.TotalNumberOfItems == 0 {
+				fmt.Printf("failed to find ANY albums for %s\n", song.Artist)
+			}
 
 			// fmt.Printf("artist %s (%d) has %d albums\n", artist.Name, artist.ID, albumSearch.TotalNumberOfItems)
 			for _, album := range albumSearch.Items {
@@ -93,7 +100,7 @@ func buildSongList(t *tidal.Tidal, playlist takeout.Playlist) []int {
 					continue
 				}
 				for _, track := range tracksSearch.Items {
-					if strings.ToLower(track.Title) == strings.ToLower(song.Title) {
+					if text.Matches(song.Title, track.Title) {
 						songIDs = append(songIDs, track.ID)
 						fmt.Println("have track " + track.Title)
 						haveSong = true
@@ -112,7 +119,7 @@ func buildSongList(t *tidal.Tidal, playlist takeout.Playlist) []int {
 		}
 
 		if !haveSong {
-			fmt.Printf("failed to find Artist:%s Album:%s Song:%s\n", song.Artist, song.Album, song.Title)
+			fmt.Printf("failed to find track Artist(%d):%s Album:%s Song:%s\n", artistSearch.TotalNumberOfItems, song.Artist, song.Album, song.Title)
 		}
 	}
 	return songIDs
