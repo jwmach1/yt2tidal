@@ -9,6 +9,8 @@ Using the extractor.js we can download a playlist json which is then feed that i
 
 ## Process
 * open youtube music tab in chrome
+* navigate to your Playlist
+  * scroll the browser to the bottom so YT loads the whole thing
 * paste the contents of _extractor.js_ into the chrome developer console
 * run this program, passing `-playlist ~/Downloads/_____playlist.json` among the other arguments
   * I recommend passing `-dryrun` the first time to see if all the songs are found on Tidal.  I've had to tweak song names.
