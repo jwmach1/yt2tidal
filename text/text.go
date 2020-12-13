@@ -40,20 +40,18 @@ func normalize(input string) string {
 	return strings.Trim(strings.ToLower(input), " ,()[]/.:'")
 }
 
-func Score(song takeout.Song, hits []tidal.Track) tidal.Track {
+func Score(song takeout.Song, hits []tidal.Track) (tidal.Track, bool) {
 	var bestTrack tidal.Track
 	score := math.MaxInt16
-	songCombo := song.Album + song.Title
 
 	for _, hit := range hits {
-		// albumScore := scoreStrings(song.Album, hit.Album.Title)
-		// trackScore := scoreStrings(song.Title, hit.Title)
-		comboScore := scoreStrings(songCombo, hit.Album.Title+hit.Title)
-		if comboScore < score { //albumScore+trackScore < score ||
+		albumScore := scoreStrings(song.Album, hit.Album.Title)
+		trackScore := scoreStrings(song.Title, hit.Title)
+		if (albumScore + trackScore) < score {
 			bestTrack = hit
-			score = comboScore //albumScore + trackScore
+			score = albumScore + trackScore
 		}
 	}
 	// fmt.Printf("best score (%d) for %s %s", score, song.Title, song.Artist)
-	return bestTrack
+	return bestTrack, score < (len(song.Title)+len(song.Album))/2
 }

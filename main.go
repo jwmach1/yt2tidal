@@ -91,59 +91,51 @@ func process(config Config) {
 
 func buildSongList(t *tidal.Tidal, playlist takeout.Playlist) []int {
 	var songIDs []int
-	var err error
 	for _, song := range playlist.Songs {
 		logs := []string{fmt.Sprint("song: ", song.Title, " Album:", song.Album, " Artist:", song.Artist)}
-		var artistSearch tidal.ArtistSearch
-		artistSearch, err = t.SearchArtist(song.Artist)
+
+		// topHits, err := t.TopHits(fmt.Sprintf("%s %s", song.Artist, song.Album))
+		hitSearch := strings.Split(song.Album, "(")[0]
+		topHits, err := t.TopHits(hitSearch)
 		if err != nil {
-			fmt.Printf("\tfailed to find playlist artist %s : %v\n", song.Artist, err)
-			//TODO search by album?
-			//https://listen.tidal.com/v1/search/top-hits?query=arctic%20monkeys%20Fluorescent%20Adolescent&limit=3&offset=0&types=ARTISTS,ALBUMS,TRACKS,VIDEOS,PLAYLISTS&includeContributors=true&countryCode=US
+			fmt.Printf("\tfailed to find playlist artist/Album %s/%s : %v\n", song.Artist, song.Album, err)
 			continue
 		}
 
 		hits := []tidal.Track{}
 
-		for _, artist := range artistSearch.Items {
-			var albumSearch tidal.AlbumSearch
-			albumSearch, err = t.GetAlbumsForArtist(artist.ID, tidal.NoneFilter)
+		for _, album := range topHits.Albums.Items {
+			var tracksSearch tidal.Tracks
+			tracksSearch, err = t.GetTracksForAlbum(album.ID)
 			if err != nil {
-				logs = append(logs, fmt.Sprintf("\tfailed to get albums for artist %s (%d) : %v", song.Artist, artist.ID, err))
+				logs = append(logs, fmt.Sprintf("\tfailed to get tracks for album %s (%d) : %v", album.Title, album.ID, err))
 				continue
 			}
-			if albumSearch.TotalNumberOfItems == 0 {
-				albumSearch, err = t.GetAlbumsForArtist(artist.ID, tidal.CompilationsFilter)
-				if err != nil {
-					logs = append(logs, fmt.Sprintf("\tfailed to get albums for artist %s (%d) : %v", song.Artist, artist.ID, err))
-					continue
+			// fmt.Printf("\t album: %s\n", album.Title)
+			for _, track := range tracksSearch.Items {
+				if text.Matches(song.Title, track.Title) {
+					hits = append(hits, track)
 				}
 			}
-			if albumSearch.TotalNumberOfItems == 0 {
-				logs = append(logs, fmt.Sprintf("\tfailed to find ANY albums for (%d) %s", artist.ID, artist.Name))
-			}
+		}
 
-			// fmt.Printf("artist %s (%d) has %d albums\n", artist.Name, artist.ID, albumSearch.TotalNumberOfItems)
-			for _, album := range albumSearch.Items {
-				var tracksSearch tidal.Tracks
-				tracksSearch, err = t.GetTracksForAlbum(album.ID)
-				if err != nil {
-					logs = append(logs, fmt.Sprintf("\tfailed to get tracks for album %s (%d) : %v", album.Title, album.ID, err))
-					continue
-				}
-				// fmt.Printf("\t album: %s\n", album.Title)
-				for _, track := range tracksSearch.Items {
-					if text.Matches(song.Title, track.Title) {
-						hits = append(hits, track)
-					}
+		if len(hits) == 0 {
+			topHits, _ = t.TopHits(fmt.Sprintf("%s %s", song.Title, song.Artist))
+			for _, track := range topHits.Tracks.Items {
+				if text.Matches(song.Title, track.Title) {
+					hits = append(hits, track)
 				}
 			}
 		}
 
 		if len(hits) > 0 {
-			track := text.Score(song, hits)
-			songIDs = append(songIDs, track.ID)
-			fmt.Println("have track " + track.Title)
+			track, ok := text.Score(song, hits)
+			if ok {
+				songIDs = append(songIDs, track.ID)
+				fmt.Println("have track " + track.Title)
+			} else {
+				fmt.Printf("track scoring failed:\n \t %s/%s/%s\n\t %s/%s/%s\n", track.Artist.Name, track.Album.Title, track.Title, song.Artist, song.Album, song.Title)
+			}
 		} else {
 			logs = append(logs, fmt.Sprintf("\tfailed to find track among (%d) hits", len(hits)))
 			fmt.Println(strings.Join(logs, "\n"))

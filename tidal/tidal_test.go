@@ -296,6 +296,45 @@ func Test_AddSongToPlaylist(t *testing.T) {
 	})
 }
 
+func Test_TopHits(t *testing.T) {
+	t.Run("success", func(t *testing.T) {
+		tripper := new(mocks.RoundTripFunc)
+		transport := &RecordingTransport{
+			Tripper: tripper.Execute,
+		}
+		loginResponse := &http.Response{
+			Body:       ioutil.NopCloser(strings.NewReader(`{"userId":123,"sessionId":"thesessionid","countryCode":"FR"}`)),
+			StatusCode: http.StatusOK,
+		}
+		b, err := ioutil.ReadFile("./test_data/top_hits_response.json")
+		require.NoError(t, err)
+		searchResponse := &http.Response{
+			Body:       ioutil.NopCloser(bytes.NewReader(b)),
+			StatusCode: http.StatusOK,
+		}
+
+		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
+			return r.URL.String() == "https://api.tidal.com/v1/login/username"
+		})).Return(loginResponse, nil).Once()
+		tripper.On("Execute", mock.MatchedBy(func(r *http.Request) bool {
+			matches := r.URL.String() == "https://api.tidal.com/v1/search/top-hits?countryCode=FR&includeContributors=true&limit=10&offset=0&query=Metallica+Load&types=ALBUMS,TRACKS"
+			if !matches {
+				t.Logf("matching failed %+v\n", r.URL.String())
+			}
+			return matches
+		})).Return(searchResponse, nil).Once()
+
+		testObject := tidal.NewClient(http.Client{
+			Transport: transport,
+		})
+
+		require.NoError(t, testObject.Login("fred", "yabba-dabba-do"))
+		actual, err := testObject.TopHits("Metallica Load")
+		assert.NoError(t, err)
+		require.Len(t, actual.Albums.Items, 1)
+	})
+}
+
 type RecordingTransport struct {
 	Tripper RoundTripFunc
 }

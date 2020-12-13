@@ -1,0 +1,450 @@
+{
+    "artists": {
+        "limit": 3,
+        "offset": 0,
+        "totalNumberOfItems": 0,
+        "items": []
+    },
+    "albums": {
+        "limit": 3,
+        "offset": 0,
+        "totalNumberOfItems": 1,
+        "items": [
+            {
+                "id": 37582040,
+                "title": "Fluorescent Adolescent",
+                "duration": 715,
+                "streamReady": true,
+                "streamStartDate": "2007-09-11T00:00:00.000+0000",
+                "allowStreaming": true,
+                "premiumStreamingOnly": false,
+                "numberOfTracks": 4,
+                "numberOfVideos": 0,
+                "numberOfVolumes": 1,
+                "releaseDate": "2007-07-08",
+                "copyright": "Domino Recording Co Ltd",
+                "type": "EP",
+                "version": null,
+                "url": "http://www.tidal.com/album/37582040",
+                "cover": "01ce446a-fe05-4fb5-ad8f-8f38a67d0ddd",
+                "videoCover": null,
+                "explicit": false,
+                "upc": "801390098468",
+                "popularity": 16,
+                "audioQuality": "LOSSLESS",
+                "audioModes": [
+                    "STEREO"
+                ],
+                "artists": [
+                    {
+                        "id": 3520710,
+                        "name": "Arctic Monkeys",
+                        "type": "MAIN"
+                    }
+                ]
+            }
+        ]
+    },
+    "tracks": {
+        "limit": 3,
+        "offset": 0,
+        "totalNumberOfItems": 16,
+        "items": [
+            {
+                "id": 34440917,
+                "title": "Fluorescent Adolescent",
+                "duration": 173,
+                "replayGain": -8.96,
+                "peak": 0.997375,
+                "allowStreaming": true,
+                "streamReady": true,
+                "streamStartDate": "2014-10-07T00:00:00.000+0000",
+                "premiumStreamingOnly": false,
+                "trackNumber": 5,
+                "volumeNumber": 1,
+                "version": null,
+                "popularity": 41,
+                "copyright": "℗ 2007 Domino Recording Company Ltd. under exclusive license to Warner Records Inc. for the United States, and WEA International Inc. for Canada.",
+                "url": "http://www.tidal.com/track/34440917",
+                "isrc": "GBCEL0700067",
+                "editable": false,
+                "explicit": false,
+                "audioQuality": "HI_RES",
+                "audioModes": [
+                    "STEREO"
+                ],
+                "artists": [
+                    {
+                        "id": 3520710,
+                        "name": "Arctic Monkeys",
+                        "type": "MAIN"
+                    }
+                ],
+                "album": {
+                    "id": 34440912,
+                    "title": "Favourite Worst Nightmare",
+                    "cover": "a084e625-2349-469d-bf32-618ddc7a1468",
+                    "videoCover": null,
+                    "releaseDate": "2007-04-24"
+                },
+                "mixes": {
+                    "MASTER_TRACK_MIX": "014a39c5689de45c355495729acf54",
+                    "TRACK_MIX": "00109bae4672de54e14019f27efe84"
+                }
+            },
+            {
+                "id": 37582041,
+                "title": "Fluorescent Adolescent",
+                "duration": 183,
+                "replayGain": -10.4,
+                "peak": 0.980682,
+                "allowStreaming": true,
+                "streamReady": true,
+                "streamStartDate": "2007-09-11T00:00:00.000+0000",
+                "premiumStreamingOnly": false,
+                "trackNumber": 1,
+                "volumeNumber": 1,
+                "version": null,
+                "popularity": 4,
+                "copyright": "Domino Recording Co Ltd",
+                "url": "http://www.tidal.com/track/37582041",
+                "isrc": "GBCEL0700067",
+                "editable": false,
+                "explicit": false,
+                "audioQuality": "LOSSLESS",
+                "audioModes": [
+                    "STEREO"
+                ],
+                "artists": [
+                    {
+                        "id": 3520710,
+                        "name": "Arctic Monkeys",
+                        "type": "MAIN"
+                    }
+                ],
+                "album": {
+                    "id": 37582040,
+                    "title": "Fluorescent Adolescent",
+                    "cover": "01ce446a-fe05-4fb5-ad8f-8f38a67d0ddd",
+                    "videoCover": null,
+                    "releaseDate": "2007-07-08"
+                },
+                "mixes": {
+                    "MASTER_TRACK_MIX": "014a39c5689de45c355495729acf54",
+                    "TRACK_MIX": "00109bae4672de54e14019f27efe84"
+                }
+            },
+            {
+                "id": 111497499,
+                "title": "Fluorescent Adolescent (Complete version originally performed by Arctic Monkeys)",
+                "duration": 178,
+                "replayGain": -6.21,
+                "peak": 0.998993,
+                "allowStreaming": true,
+                "streamReady": true,
+                "streamStartDate": "2019-06-15T00:00:00.000+0000",
+                "premiumStreamingOnly": false,
+                "trackNumber": 1,
+                "volumeNumber": 1,
+                "version": null,
+                "popularity": 0,
+                "copyright": "Voice Express",
+                "url": "http://www.tidal.com/track/111497499",
+                "isrc": "HKC370032606",
+                "editable": false,
+                "explicit": false,
+                "audioQuality": "LOSSLESS",
+                "audioModes": [
+                    "STEREO"
+                ],
+                "artists": [
+                    {
+                        "id": 2935,
+                        "name": "Various Artists",
+                        "type": "MAIN"
+                    }
+                ],
+                "album": {
+                    "id": 111497498,
+                    "title": "Fluorescent Adolescent",
+                    "cover": "d7268b87-2d3b-47b5-a4e2-59de3777291d",
+                    "videoCover": null,
+                    "releaseDate": "2018-10-01"
+                },
+                "mixes": {}
+            }
+        ]
+    },
+    "genres": [],
+    "topHits": [
+        {
+            "value": {
+                "id": 34440917,
+                "title": "Fluorescent Adolescent",
+                "duration": 173,
+                "replayGain": -8.96,
+                "peak": 0.997375,
+                "allowStreaming": true,
+                "streamReady": true,
+                "streamStartDate": "2014-10-07T00:00:00.000+0000",
+                "premiumStreamingOnly": false,
+                "trackNumber": 5,
+                "volumeNumber": 1,
+                "version": null,
+                "popularity": 41,
+                "copyright": "℗ 2007 Domino Recording Company Ltd. under exclusive license to Warner Records Inc. for the United States, and WEA International Inc. for Canada.",
+                "url": "http://www.tidal.com/track/34440917",
+                "isrc": "GBCEL0700067",
+                "editable": false,
+                "explicit": false,
+                "audioQuality": "HI_RES",
+                "audioModes": [
+                    "STEREO"
+                ],
+                "artists": [
+                    {
+                        "id": 3520710,
+                        "name": "Arctic Monkeys",
+                        "type": "MAIN"
+                    }
+                ],
+                "album": {
+                    "id": 34440912,
+                    "title": "Favourite Worst Nightmare",
+                    "cover": "a084e625-2349-469d-bf32-618ddc7a1468",
+                    "videoCover": null,
+                    "releaseDate": "2007-04-24"
+                },
+                "mixes": {
+                    "MASTER_TRACK_MIX": "014a39c5689de45c355495729acf54",
+                    "TRACK_MIX": "00109bae4672de54e14019f27efe84"
+                }
+            },
+            "type": "TRACKS"
+        },
+        {
+            "value": {
+                "id": 37582040,
+                "title": "Fluorescent Adolescent",
+                "duration": 715,
+                "streamReady": true,
+                "streamStartDate": "2007-09-11T00:00:00.000+0000",
+                "allowStreaming": true,
+                "premiumStreamingOnly": false,
+                "numberOfTracks": 4,
+                "numberOfVideos": 0,
+                "numberOfVolumes": 1,
+                "releaseDate": "2007-07-08",
+                "copyright": "Domino Recording Co Ltd",
+                "type": "EP",
+                "version": null,
+                "url": "http://www.tidal.com/album/37582040",
+                "cover": "01ce446a-fe05-4fb5-ad8f-8f38a67d0ddd",
+                "videoCover": null,
+                "explicit": false,
+                "upc": "801390098468",
+                "popularity": 16,
+                "audioQuality": "LOSSLESS",
+                "audioModes": [
+                    "STEREO"
+                ],
+                "artists": [
+                    {
+                        "id": 3520710,
+                        "name": "Arctic Monkeys",
+                        "type": "MAIN"
+                    }
+                ]
+            },
+            "type": "ALBUMS"
+        },
+        {
+            "value": {
+                "uuid": "e9077f4a-5e67-403c-9947-83c2a2064946",
+                "title": "Arctic Monkeys Essentials",
+                "numberOfTracks": 29,
+                "numberOfVideos": 0,
+                "creator": {},
+                "description": "Hailing from Sheffield, UK, the four-piece Arctic Monkeys quickly rose to be one of the most important alternative bands of their generation. Their first demos appeared online after fans uploaded their first recordings, distributed by the band at their gigs in 2003. Due to constant live shows and their growing online momentum the band's popularity skyrocketed and secured them a record deal with Domino Records. The first single \"I Bet You Look Good On The Dancefloor\" hit record stores in autumn 2005 and went straight the top position in the UK charts. The full-length debut ‘Whatever People Say I Am That’s What I’m Not’ (January 2006) turned out to be the fastest selling debut record of all time in their home country and secured the band their international breakthrough. The group evolved their recognizable sound and the extraordinary songwriting of vocalist Alex Turner further on the following albums ‘Favourite Worst Nightmare’ (2007), ‘Humbug’ (2009), ‘Suck it and See’ (2011) and their most recent LP ‘AM’ (2013). (Photo: Rovi)",
+                "duration": 6063,
+                "lastUpdated": "2020-03-25T08:52:27.000+0000",
+                "created": "2018-01-30T09:59:39.000+0000",
+                "type": "EDITORIAL",
+                "publicPlaylist": true,
+                "url": "http://www.tidal.com/playlist/e9077f4a-5e67-403c-9947-83c2a2064946",
+                "image": "075f2e26-1024-4b26-ae4a-ce99b4219884",
+                "popularity": 31,
+                "squareImage": "e78b7b1c-bf8a-4601-b9f6-f5d118178472",
+                "promotedArtists": [
+                    {
+                        "id": 3520710,
+                        "name": "Arctic Monkeys",
+                        "type": "MAIN"
+                    }
+                ],
+                "lastItemAddedAt": null
+            },
+            "type": "PLAYLISTS"
+        },
+        {
+            "value": {
+                "uuid": "3b73ea36-5f68-4b94-928d-9b550b9abafa",
+                "title": "NME: Greatest Songs of All Time",
+                "numberOfTracks": 341,
+                "numberOfVideos": 0,
+                "creator": {},
+                "description": "NME has compiled a list of the best songs of all time - and not just any list. According to the British weekly and website, this is \"the definitive countdown of the best tracks ever recorded.\" (Photo: logo)",
+                "duration": 101224,
+                "lastUpdated": "2020-03-24T12:19:56.000+0000",
+                "created": "2014-10-01T10:37:54.000+0000",
+                "type": "EDITORIAL",
+                "publicPlaylist": true,
+                "url": "http://www.tidal.com/playlist/3b73ea36-5f68-4b94-928d-9b550b9abafa",
+                "image": "0d8ab0a1-7633-49af-9678-b928b7cbaf43",
+                "popularity": 51,
+                "squareImage": "c6e6e3d8-60d1-4828-8370-23259dfbd6a8",
+                "promotedArtists": [
+                    {
+                        "id": 19368,
+                        "name": "Nirvana",
+                        "type": "MAIN"
+                    },
+                    {
+                        "id": 11949,
+                        "name": "Joy Division",
+                        "type": "MAIN"
+                    },
+                    {
+                        "id": 12699,
+                        "name": "The Smiths",
+                        "type": "MAIN"
+                    },
+                    {
+                        "id": 29037,
+                        "name": "The Strokes",
+                        "type": "MAIN"
+                    }
+                ],
+                "lastItemAddedAt": null
+            },
+            "type": "PLAYLISTS"
+        },
+        {
+            "value": {
+                "id": 37582041,
+                "title": "Fluorescent Adolescent",
+                "duration": 183,
+                "replayGain": -10.4,
+                "peak": 0.980682,
+                "allowStreaming": true,
+                "streamReady": true,
+                "streamStartDate": "2007-09-11T00:00:00.000+0000",
+                "premiumStreamingOnly": false,
+                "trackNumber": 1,
+                "volumeNumber": 1,
+                "version": null,
+                "popularity": 4,
+                "copyright": "Domino Recording Co Ltd",
+                "url": "http://www.tidal.com/track/37582041",
+                "isrc": "GBCEL0700067",
+                "editable": false,
+                "explicit": false,
+                "audioQuality": "LOSSLESS",
+                "audioModes": [
+                    "STEREO"
+                ],
+                "artists": [
+                    {
+                        "id": 3520710,
+                        "name": "Arctic Monkeys",
+                        "type": "MAIN"
+                    }
+                ],
+                "album": {
+                    "id": 37582040,
+                    "title": "Fluorescent Adolescent",
+                    "cover": "01ce446a-fe05-4fb5-ad8f-8f38a67d0ddd",
+                    "videoCover": null,
+                    "releaseDate": "2007-07-08"
+                },
+                "mixes": {
+                    "MASTER_TRACK_MIX": "014a39c5689de45c355495729acf54",
+                    "TRACK_MIX": "00109bae4672de54e14019f27efe84"
+                }
+            },
+            "type": "TRACKS"
+        },
+        {
+            "value": {
+                "id": 72359404,
+                "title": "Fluorescent Adolescent - Arctic Monkeys Piano Cover by RONY (feat. Kim Cabanes)",
+                "volumeNumber": 1,
+                "trackNumber": 1,
+                "releaseDate": "2017-04-07T00:00:00.000+0000",
+                "imagePath": null,
+                "imageId": "a58c6d2f-3a84-47de-b753-0c66102428d1",
+                "duration": 181,
+                "quality": "MP4_1080P",
+                "streamReady": true,
+                "streamStartDate": "2017-04-07T00:00:00.000+0000",
+                "allowStreaming": true,
+                "explicit": false,
+                "popularity": 2,
+                "type": "Music Video",
+                "adsUrl": null,
+                "adsPrePaywallOnly": true,
+                "artists": [
+                    {
+                        "id": 8656842,
+                        "name": "Fluorescent Adolescent",
+                        "type": "MAIN"
+                    }
+                ],
+                "album": null
+            },
+            "type": "VIDEOS"
+        },
+        {
+            "value": {
+                "id": 111497499,
+                "title": "Fluorescent Adolescent (Complete version originally performed by Arctic Monkeys)",
+                "duration": 178,
+                "replayGain": -6.21,
+                "peak": 0.998993,
+                "allowStreaming": true,
+                "streamReady": true,
+                "streamStartDate": "2019-06-15T00:00:00.000+0000",
+                "premiumStreamingOnly": false,
+                "trackNumber": 1,
+                "volumeNumber": 1,
+                "version": null,
+                "popularity": 0,
+                "copyright": "Voice Express",
+                "url": "http://www.tidal.com/track/111497499",
+                "isrc": "HKC370032606",
+                "editable": false,
+                "explicit": false,
+                "audioQuality": "LOSSLESS",
+                "audioModes": [
+                    "STEREO"
+                ],
+                "artists": [
+                    {
+                        "id": 2935,
+                        "name": "Various Artists",
+                        "type": "MAIN"
+                    }
+                ],
+                "album": {
+                    "id": 111497498,
+                    "title": "Fluorescent Adolescent",
+                    "cover": "d7268b87-2d3b-47b5-a4e2-59de3777291d",
+                    "videoCover": null,
+                    "releaseDate": "2018-10-01"
+                },
+                "mixes": {}
+            },
+            "type": "TRACKS"
+        }
+    ]
+}

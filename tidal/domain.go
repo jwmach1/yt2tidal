@@ -123,3 +123,9 @@ type AlbumSearch struct {
 	*ResultHeader
 	Items []Album `json:"items"`
 }
+
+type TopHits struct {
+	Albums  AlbumSearch
+	Artists ArtistSearch
+	Tracks  Tracks
+}

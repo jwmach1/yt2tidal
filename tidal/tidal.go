@@ -340,3 +340,39 @@ func (t *Tidal) GetTracksForAlbum(id int) (Tracks, error) {
 	t.cache.Add(strconv.Itoa(id), result, cache.DefaultExpiration)
 	return result, err
 }
+
+// https://listen.tidal.com/v1/search/top-hits?query=arctic%20monkeys%20Fluorescent%20Adolescent&limit=3&offset=0&types=ARTISTS,ALBUMS,TRACKS&includeContributors=true&countryCode=US
+
+func (t *Tidal) TopHits(search string) (TopHits, error) {
+	if result, ok := t.cache.Get(search); ok {
+		return result.(TopHits), nil
+	}
+
+	data := url.Values{}
+	data.Set("query", search)
+	data.Set("limit", "10")
+	data.Set("offset", "0")
+	data.Set("types", "ALBUMS,TRACKS")
+	data.Set("countryCode", t.session.CountryCode)
+	data.Set("includeContributors", "true")
+
+	url := fmt.Sprintf("https://api.tidal.com/v1/search/top-hits?%s", data.Encode())
+	req, _ := http.NewRequest("GET", url, nil)
+	req.Header.Set("X-Tidal-Token", apiToken)
+	req.Header.Add("X-Tidal-SessionId", t.session.SessionID)
+
+	resp, err := t.client.Do(req)
+	if err != nil {
+		return TopHits{}, err
+	}
+	defer resp.Body.Close()
+
+	b, _ := ioutil.ReadAll(resp.Body)
+	// fmt.Printf("tracks of %d:\n%s\n", id, b)
+
+	var result TopHits
+	json.NewDecoder(bytes.NewReader(b)).Decode(&result)
+
+	t.cache.Add(search, result, cache.DefaultExpiration)
+	return result, err
+}
